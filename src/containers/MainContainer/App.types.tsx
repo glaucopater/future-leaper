@@ -1,36 +1,19 @@
-import React from "react";
-import { LoginForm } from "../../components/LoginForm";
-import { SignupForm } from "../../components/SignupForm";
-import "./App.css";
+import { Application, User } from "../../store/reducers/appStore";
 
 export interface IAppState {
-  appStore: any;
+  appStore: {
+    users: User[];
+    applications: Application[];
+  };
 }
 
-interface IAppProps {
-  deleteApp: (appId: number) => void;
-  addApp: (app: any) => void;
-  updateApp: (app: any) => void;
-  appStore: any;
+export interface IAppProps {
+  deleteApp: (appId: Application["id"]) => void;
+  addApp: (app: Application) => void;
+  updateApp: (app: Application) => void;
+  registerUser: (app: User) => void;
+  appStore: {
+    users: User[];
+    applications: Application[];
+  };
 }
-
-export const App = (props: IAppProps & IAppState) => {
-  const [, setState] = React.useState<IAppState>(props);
-  const { appStore } = props;
-
-  React.useEffect(() => {
-    setState({
-      appStore: {},
-    });
-  }, [appStore]);
-
-  return (
-    <div className="App">
-      <header className="App-header">Future leap</header>
-      <main className="App-main">
-        <SignupForm />
-        <LoginForm />
-      </main>
-    </div>
-  );
-};
