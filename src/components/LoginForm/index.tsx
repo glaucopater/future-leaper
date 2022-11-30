@@ -19,7 +19,7 @@ export const LoginForm = () => {
         username: currentUsername,
         password: currentPassword,
       })
-        .then((resp: AxiosResponse) => { 
+        .then((resp: AxiosResponse) => {
           const data = resp.data;
           setCookie("sessionId", data["session"] as unknown as any);
           setIsLoading(false);

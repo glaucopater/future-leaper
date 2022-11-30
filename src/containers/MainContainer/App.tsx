@@ -22,7 +22,12 @@ const mapStateToProps = (state: IAppState) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: (arg0: { type: string; appStore: { appStore: { applications: never[]; user: undefined; }; }; }) => void) => {
+const mapDispatchToProps = (
+  dispatch: (arg0: {
+    type: string;
+    appStore: { appStore: { applications: never[]; user: undefined } };
+  }) => void
+) => {
   return {
     deleteApp: (appId: Application["id"]) => {
       dispatch(deleteApp(appId));

@@ -27,7 +27,10 @@ export const initialState = {
   },
 };
 
-const appStore = (state = initialState.appStore, action: { type: any; appStore: any; }) => {
+const appStore = (
+  state = initialState.appStore,
+  action: { type: any; appStore: any }
+) => {
   let appStore;
   switch (action.type) {
     case ADD_APP:

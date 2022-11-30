@@ -3,6 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # TODO
+
 - Remove all any, enforce types ✅
 - Connect the API ✅
 - Store the cookie ✅
@@ -11,7 +12,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Add Signup
 
 - Add navigation router
-- Add missing actions 
+- Add missing actions
 - Split actions and types by context
 - Add unit tests
 - Divide the App in pages
@@ -19,7 +20,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Add breadbrumbs
 - Mock the api response
 
-----
+---
 
 To do:
 
@@ -72,7 +73,6 @@ Sandbox
 
 Reset sandbox
 [DELETE] https://frontend-test.getsandbox.com/sandbox
-
 
 ## [Live Demo](TBD) ⚡
 
