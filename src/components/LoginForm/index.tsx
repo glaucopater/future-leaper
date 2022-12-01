@@ -41,7 +41,7 @@ export const LoginForm = () => {
 
   if (cookies["sessionId"]) {
     //return <>Redirect ...</>;
-    return <Navigate to="/"/>;
+    return <Navigate to="/" />;
   }
 
   return (

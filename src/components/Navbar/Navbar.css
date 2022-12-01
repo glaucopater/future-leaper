@@ -17,10 +17,9 @@
   padding: 8px;
   text-decoration: none;
   border: 1px solid transparent;
-
 }
 
-.Navbar > li :hover{
+.Navbar > li :hover {
   color: #fefefe;
   text-decoration: none;
   border: 1px solid #fefefe;
