@@ -7,8 +7,6 @@ import {
 import { IAppProps, IAppState } from "./App.types";
 import { connect } from "react-redux";
 import React from "react";
-import { LoginForm } from "../../components/LoginForm";
-import { SignupForm } from "../../components/SignupForm";
 import { getApplications, getUsers } from "../../api";
 import { useCookies } from "react-cookie";
 import { Header } from "../../components/Header";
@@ -44,11 +42,10 @@ const mapDispatchToProps = (
   };
 };
 
-const App = (props: IAppProps & IAppState) => {
+const MainContainer = (props: IAppProps & IAppState) => {
   const [, setState] = React.useState<IAppState>(props);
   const [cookies] = useCookies(["sessionId", "Domain", "Path"]);
-
-  const { appStore, registerUser } = props;
+  const { appStore } = props;
 
   React.useEffect(() => {
     setState({
@@ -73,18 +70,9 @@ const App = (props: IAppProps & IAppState) => {
   return (
     <div className="App">
       <Header />
-      <main className="App-main">
-        {cookies["sessionId"] ? (
-          <>Logged in</>
-        ) : (
-          <>
-            <SignupForm formAction={registerUser} />
-            <LoginForm />
-          </>
-        )}
-      </main>
+      <main className="App-main">Main container</main>
     </div>
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

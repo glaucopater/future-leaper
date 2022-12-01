@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
+import { Navigate } from "react-router-dom";
 import { postUsersLogin } from "../../api";
 import { User } from "../../store/reducers/appStore";
 import "./LoginForm.css";
@@ -39,7 +40,8 @@ export const LoginForm = () => {
   };
 
   if (cookies["sessionId"]) {
-    return <>Redirect ...</>;
+    //return <>Redirect ...</>;
+    return <Navigate to="/"/>;
   }
 
   return (
