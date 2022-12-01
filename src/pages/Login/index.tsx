@@ -1,5 +1,5 @@
 import { Header } from "../../components/Header";
-import { LoginForm } from "../../components/LoginForm";
+import LoginForm from "../../components/Forms/LoginForm";
 import "../../containers/MainContainer/App.css";
 
 export const Login = () => {

@@ -1,12 +1,18 @@
 import { AxiosResponse } from "axios";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
+import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { postUsersLogin } from "../../api";
-import { User } from "../../store/reducers/appStore";
+import { postUsersLogin } from "../../../api";
+import { IAppProps, IAppState } from "../../../containers/MainContainer/App.types";
+import {
+  mapDispatchToProps,
+  mapStateToProps,
+} from "../../../containers/MainContainer/MainContainer";
+import { User } from "../../../store/reducers/appStore";
 import "./LoginForm.css";
 
-export const LoginForm = () => {
+export const LoginForm = (props: IAppProps & IAppState) => { 
   const [isLoading, setIsLoading] = useState(false);
   const [cookies, setCookie] = useCookies(["sessionId"]);
   const [currentUsername, setCurrentUsername] = useState<User["username"]>();
@@ -14,8 +20,12 @@ export const LoginForm = () => {
 
   const handleOnLogin = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (currentUsername || currentPassword) {
+    if (currentUsername && currentPassword) {
       setIsLoading(true);
+      props.loginUser({
+        username: currentUsername,
+        password: currentPassword,
+      });
       await postUsersLogin({
         username: currentUsername,
         password: currentPassword,
@@ -40,7 +50,6 @@ export const LoginForm = () => {
   };
 
   if (cookies["sessionId"]) {
-    //return <>Redirect ...</>;
     return <Navigate to="/" />;
   }
 
@@ -78,3 +87,5 @@ export const LoginForm = () => {
     </>
   );
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

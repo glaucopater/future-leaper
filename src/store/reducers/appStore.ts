@@ -1,6 +1,7 @@
 import {
   ADD_APP,
   DELETE_APP,
+  LIST_APP,
   LOGIN_USER,
   REGISTER_USER,
   UPDATE_APP,
@@ -32,8 +33,12 @@ const appStore = (
   action: { type: any; appStore: any }
 ) => {
   let appStore;
+  console.log("reducer", action.type);
   switch (action.type) {
     case ADD_APP:
+      appStore = Object.assign({}, state, action.appStore);
+      break;
+    case LIST_APP:
       appStore = Object.assign({}, state, action.appStore);
       break;
     case UPDATE_APP:
@@ -43,7 +48,6 @@ const appStore = (
       appStore = Object.assign({}, state, action.appStore);
       break;
     case LOGIN_USER:
-      console.log("LOGIN_USER");
       // [POST] https://frontend-test.getsandbox.com/users/login
       // OK should redirect to main page
       // error should show a notification
@@ -51,7 +55,6 @@ const appStore = (
       appStore = Object.assign({}, state, action.appStore);
       break;
     case REGISTER_USER:
-      console.log("REGISTER_USER");
       // [POST] https://frontend-test.getsandbox.com/users
       // OK should show a notification
       // error should show a notification

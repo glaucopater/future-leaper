@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Application } from "../store/reducers/appStore";
 
 export const Api = (
   method: string,
@@ -48,6 +49,19 @@ export const post = (
 
 export const getApplications = (parameters?: string) => {
   return axios.get("/applications");
+};
+
+export const putApplicationsUpdate = (
+  payload: Application,
+  parameters?: string
+) => {
+  const res = axios.put("/applications/" + payload.id, payload);
+  return res;
+};
+
+export const postApplications = (payload: Application, parameters?: string) => {
+  const res = axios.post("/applications", payload);
+  return res;
 };
 
 export const getUsers = (parameters?: string) => {

@@ -11,12 +11,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Add logout ✅
 - Add Signup
 
-- Add navigation router
+- Add navigation router ✅
+
+- Divide the App in pages ✅
+- Create navigation menu ✅
+
 - Add missing actions
 - Split actions and types by context
 - Add unit tests
-- Divide the App in pages
-- Create navigation menu
 - Add breadbrumbs
 - Mock the api response
 

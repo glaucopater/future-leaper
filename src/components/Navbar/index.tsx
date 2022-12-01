@@ -5,13 +5,14 @@ import "./Navbar.css";
 export const Navbar = () => {
   const [cookies] = useCookies(["sessionId", "Domain", "Path"]);
 
+
+  console.log(cookies);
   return (
     <nav>
       <ul className="Navbar">
         <li>
           <Link to="/">Home</Link>
         </li>
-
         {cookies["sessionId"] ? (
           <li>
             <Link to="/logout">Logout</Link>

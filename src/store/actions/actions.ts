@@ -24,9 +24,24 @@ export const deleteApp = (id: Application["id"]) => {
   };
 };
 
+export const listApp = () => {
+  return {
+    type: constants.LIST_APP,
+    appStore,
+  };
+};
+
 export const registerUser = (user: User) => {
   return {
     type: constants.REGISTER_USER,
+    appStore,
+  };
+};
+
+
+export const loginUser = (user: User) => {
+  return {
+    type: constants.LOGIN_USER,
     appStore,
   };
 };

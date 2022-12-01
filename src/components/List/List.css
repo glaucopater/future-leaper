@@ -1,0 +1,26 @@
+.List {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  align-items: center;
+}
+
+.Info {
+  color: #111;
+}
+
+.List li {
+  padding: 8px;
+  margin: 8px;
+  width: 80%;
+}
+
+@media only screen and (min-width: 600px) {
+  .List li {
+    width: 500px;
+  }
+}
+
+.item-selected {
+  list-style-type: "❎";
+}

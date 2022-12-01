@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useState } from "react";
-import { postRegisterUser } from "../../api";
-import { User } from "../../store/reducers/appStore";
+import { postRegisterUser } from "../../../api";
+import { User } from "../../../store/reducers/appStore";
 import "./SignupForm.css";
 
 export const SignupForm = ({ formAction: registerUser }: any) => {
