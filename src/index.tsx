@@ -7,36 +7,14 @@ import rootReducer from "./store/reducers";
 import thunk from "redux-thunk";
 import { applyMiddleware, createStore } from "redux";
 import { CookiesProvider } from "react-cookie";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Login } from "./pages/Login";
-import { Signup } from "./pages/Signup";
-import { Home } from "./pages/Home";
-import { Logout } from "./pages/Logout";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes";
+
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/signup",
-    element: <Signup />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-
-  {
-    path: "/logout",
-    element: <Logout />,
-  },
-]);
 
 root.render(
   <React.StrictMode>

@@ -1,6 +1,7 @@
 import {
   addApplication,
   deleteApplication,
+  getApplicationDetails,
   getApplications,
   loginUser,
   registerUser,
@@ -39,6 +40,9 @@ export const mapDispatchToProps = (dispatch: any) => {
     },
     getApplications: () => {
       dispatch(getApplications());
+    },
+    getApplicationDetails: (appId: Application["id"]) => {
+      dispatch(getApplicationDetails(appId));
     },
   };
 };

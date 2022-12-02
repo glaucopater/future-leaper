@@ -4,7 +4,7 @@ import MainContainer from "../../containers/MainContainer/MainContainer";
 import "../../containers/MainContainer/App.css";
 
 export const Home = () => {
-  const [cookies] = useCookies(["sessionId", "Domain", "Path"]);
+  const [cookies] = useCookies(["sessionId"]);
   if (cookies["sessionId"]) return <MainContainer />;
   else return <Navigate to="/login" replace={true} />;
 };

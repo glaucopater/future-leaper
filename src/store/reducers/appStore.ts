@@ -19,7 +19,6 @@ export const initialState: IAppState = {
   appStoreReducer: {
     applications: [],
     users: [],
-    isLoggedIn: false,
   },
 };
 
@@ -38,6 +37,12 @@ const appStoreReducer = (
       return Object.assign({}, state, action.payload);
     case ReducerActionType.LIST_APP_SUCCESS:
       return { ...state, applications: action.payload };
+    case ReducerActionType.GET_APP:
+      return Object.assign({}, state, action.payload);
+    case ReducerActionType.GET_APP_FAILURE:
+      return Object.assign({}, state, action.payload);
+    case ReducerActionType.GET_APP_SUCCESS:
+      return { ...state, application: action.payload };
     case ReducerActionType.UPDATE_APP:
       return Object.assign({}, state, action.payload);
     case ReducerActionType.UPDATE_APP_SUCCESS:
@@ -57,9 +62,6 @@ const appStoreReducer = (
     case ReducerActionType.LOGIN_FAILURE:
       return Object.assign({}, state, action.payload);
     case ReducerActionType.REGISTER_USER:
-      // [POST] https://frontend-test.getsandbox.com/users
-      // OK should show a notification
-      // error should show a notification
       return Object.assign({}, state, action.payload);
     default:
       return state;

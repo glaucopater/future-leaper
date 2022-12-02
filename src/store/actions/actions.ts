@@ -56,6 +56,34 @@ export const getApplications = () => {
   };
 };
 
+export const getApplicationDetailsSuccess = (data: Application) => {
+  console.log(data);
+  return {
+    type: ReducerActionType.GET_APP_SUCCESS,
+    payload: data,
+  };
+};
+
+export const getApplicationDetailsFailure = (message: string) => {
+  return {
+    type: ReducerActionType.GET_APP_FAILURE,
+    payload: message,
+  };
+};
+
+export const getApplicationDetails = (applicationId: Application["id"]) => {
+  return (dispatch: any) => {
+    return axios
+      .get<Application>("/applications/" + applicationId)
+      .then(({ data }: AxiosResponse) => {
+        dispatch(getApplicationDetailsSuccess(data));
+      })
+      .catch((error) => {
+        dispatch(getApplicationDetailsFailure(error));
+      });
+  };
+};
+
 export const updateApplicationsSuccess = (data: Application) => {
   return {
     type: ReducerActionType.UPDATE_APP_SUCCESS,

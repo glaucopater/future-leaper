@@ -28,7 +28,7 @@ export const mapDispatchToProps = (dispatch: any) => {
 type applicationFormProps = {
   activeApplication: Application;
   isEditable?: boolean;
-  handleOnComplete: () => void;
+  handleOnComplete?: () => void;
 };
 
 export interface IAppProps {
@@ -56,7 +56,7 @@ export const ApplicationForm = (props: ApplicationFormMergedProps) => {
         props.addApplication(currentApplication);
       }
       setIsLoading(false);
-      props.handleOnComplete();
+      if (props.handleOnComplete) props.handleOnComplete();
     }
   };
 

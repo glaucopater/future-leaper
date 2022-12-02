@@ -15,3 +15,7 @@
 .application-card-selected {
   background-color: lightgreen;
 }
+
+strong {
+  text-transform: capitalize;
+}

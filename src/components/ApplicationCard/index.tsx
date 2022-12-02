@@ -10,8 +10,7 @@ export const ApplicationCard = ({
   item: Application;
   renderer: () => string[];
 }) => {
-  const attributes: string[] = renderer();
-  const previewAttributes =  ["id", "name", "version"];
+  const previewAttributes = ["id", "name", "version"];
   const [displayModal, setDisplayModal] = useState(false);
 
   const handleOnCloseModal = () => {
@@ -32,7 +31,8 @@ export const ApplicationCard = ({
       >
         {previewAttributes.map((attr: string, index: number) => (
           <span key={index} className="field">
-           <strong>{attr}:</strong>{item[attr as keyof typeof item]}
+            <strong>{attr}: </strong>
+            {item[attr as keyof typeof item]}
           </span>
         ))}
       </div>
