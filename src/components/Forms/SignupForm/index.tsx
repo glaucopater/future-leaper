@@ -55,7 +55,12 @@ export const SignupForm = ({
           defaultValue={currentPassword}
           onChange={handleOnChangePassword}
         ></input>
-        <button onClick={handleOnSubmit}>Signup</button>
+        <button
+          disabled={!currentUsername && !currentPassword}
+          onClick={handleOnSubmit}
+        >
+          Signup
+        </button>
       </form>
     </>
   );

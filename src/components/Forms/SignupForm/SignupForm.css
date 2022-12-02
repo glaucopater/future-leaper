@@ -1,7 +1,16 @@
 .Signup-Form {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 200px;
   padding: 8px;
   margin: 8px;
+  align-items: stretch;
+}
+
+.Signup-Form label {
+  align-self: flex-start;
+}
+
+.Signup-Form > input {
+  margin-bottom: 8px;
 }
