@@ -1,105 +1,32 @@
-# Getting Started with Future Leaper
+# Getting Started with Future Leap
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# TODO
-
-- Remove all any, enforce types ✅
-- Connect the API ✅
-- Store the cookie ✅
-- Fix App state ✅
-- Add logout ✅
-- Add Signup
-
-- Add navigation router ✅
-
-- Divide the App in pages ✅
-- Create navigation menu ✅
-
-- Add missing actions
-- Split actions and types by context
-- Add unit tests
-- Add breadbrumbs
-- Mock the api response
-
----
-
-To do:
-
-JS/HTML Part:
-
-create a signup form (we prefer using redux-form module) with API integration (/users)
-first name (required)
-last name (required)
-email (required)
-add a login page - using API endpoint (/users/login)
-create application list page - using API endpoint
-display application page - using API endpoint (/applications)
-display current active navigation breadcrumb
-CSS Part:
-
-stick page header to the top - independent on scroll position
-write a (scss) mixin that will calc & return font size based on rem with px fallback for older browsers
-highlight the currently active navigation item in breadcrumb
-
----
-
-Mocked API routes
-
-User
-
-Register user
-[POST] https://frontend-test.getsandbox.com/users
-{ "username":"fred", "password":"fred" }
-Login
-[POST] https://frontend-test.getsandbox.com/users/login
-{ "username":"fred", "password":"fred" }=> Session ID stored in a cookie : sessionId=[uuid]
-User info
-[GET] https://frontend-test.getsandbox.com/users (need Auth Cookies)
-Application
-
-Add application
-[POST] https://frontend-test.getsandbox.com/applications (need Auth Cookies)
-{ "id": "1", "name": "App1", "secret": "secretsecretsecretsecret", "lang":"php", "version": 1 }
-List application
-[GET] https://frontend-test.getsandbox.com/applications (need Auth Cookies)
-Param:
-lang : ?lang=php
-version: ?lang=version
-Update application
-[PUT] https://frontend-test.getsandbox.com/applications/[id] (need Auth Cookies)
-{ "username":"admin" }
-Delete application
-[DELETE] https://frontend-test.getsandbox.com/applications/[id] (need Auth Cookies)
-Sandbox
-
-Reset sandbox
-[DELETE] https://frontend-test.getsandbox.com/sandbox
-
-## [Live Demo](TBD) ⚡
-
-![Demo](/demo/demo.png)
-
 # State manager 🏬
+
+I adopted as by requirement Redux and Thunk, even in this case React custom reducer hooks and a context would have been more than enough.
 
 # API
 
+Axios is used for the basic CRUD operation. Please note that the info about some API in the readme are not correct, i.e. for the /users endpoint the shape of the user model has only username and password.
+
 # Security
 
+Using a cookie nowadays is a bit strange to me, I would have opted for a standard JWT or also a http-only cookie.
+
 # UI 🎨
+
+The UI is minimalistic, due to missing time I could not switch to SASS.
 
 # Models 📐
 
 # Tests 🧪
 
+Missing in action...
+
 # Ship to prod 🚢
 
-Thanks to husky each commit /push perform unit tests, eslint, prettify the code.
-Then deploy it on netlify (demo).
-
-# Performance ⚡
-
-Reduce rerendering
+Thanks to husky each commit /push perform eslint and prettify the code.
 
 ## Available Scripts
 
