@@ -1,0 +1,25 @@
+.Add_Application {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #111;
+  display: block;
+  flex: 1 0 auto;
+  margin: 4px;
+  padding: 4px 8px;
+  position: relative;
+  text-decoration: none;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: ease-in-out 300ms;
+}
+
+.Add_Application:hover {
+  cursor: pointer;
+  transition: ease-in-out 300ms;
+  background: #effeec;
+}
+
+.Add_Application::after {
+  content: "➕";
+  padding: 0 8px;
+}

@@ -1,0 +1,16 @@
+.Login-Form {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  padding: 8px;
+  margin: 8px;
+  align-items: stretch;
+}
+
+.Login-Form label {
+  align-self: flex-start;
+}
+
+.Login-Form > input {
+  margin-bottom: 8px;
+}

@@ -1,15 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import rootReducer from "./store/reducers";
+import thunk from "redux-thunk";
+import { applyMiddleware, createStore } from "redux";
+import { CookiesProvider } from "react-cookie";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes";
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <CookiesProvider>
+        <RouterProvider router={router} />
+      </CookiesProvider>
+    </Provider>
+    ,
   </React.StrictMode>
 );
 
