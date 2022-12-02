@@ -1,10 +1,11 @@
-import { AxiosResponse } from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { postUsersLogin } from "../../../api";
-import { IAppProps, IAppState } from "../../../containers/MainContainer/App.types";
+import {
+  IAppProps,
+  IAppState,
+} from "../../../containers/MainContainer/App.types";
 import {
   mapDispatchToProps,
   mapStateToProps,
@@ -12,32 +13,30 @@ import {
 import { User } from "../../../store/reducers/appStore";
 import "./LoginForm.css";
 
-export const LoginForm = (props: IAppProps & IAppState) => { 
+export const LoginForm = ({
+  appStoreReducer,
+  loginUser,
+}: IAppProps & IAppState) => {
   const [isLoading, setIsLoading] = useState(false);
   const [cookies, setCookie] = useCookies(["sessionId"]);
   const [currentUsername, setCurrentUsername] = useState<User["username"]>();
   const [currentPassword, setCurrentPassword] = useState<User["password"]>();
 
+  const { userSession } = appStoreReducer;
+
+  useEffect(() => {
+    if (userSession?.session) setCookie("sessionId", userSession?.session);
+  }, [userSession, setCookie]);
+
   const handleOnLogin = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (currentUsername && currentPassword) {
       setIsLoading(true);
-      props.loginUser({
+      loginUser({
         username: currentUsername,
         password: currentPassword,
       });
-      await postUsersLogin({
-        username: currentUsername,
-        password: currentPassword,
-      })
-        .then((resp: AxiosResponse) => {
-          const data = resp.data;
-          setCookie("sessionId", data["session"] as unknown as any);
-          setIsLoading(false);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
+      setIsLoading(false);
     }
   };
 

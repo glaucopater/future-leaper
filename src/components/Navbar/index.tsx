@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 export const Navbar = () => {
-  const [cookies] = useCookies(["sessionId", "Domain", "Path"]);
+  const [cookies] = useCookies(["sessionId"]);
 
-
-  console.log(cookies);
-  return (
+   return (
     <nav>
       <ul className="Navbar">
         <li>

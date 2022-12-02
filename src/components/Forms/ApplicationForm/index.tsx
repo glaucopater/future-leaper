@@ -1,31 +1,26 @@
-import { AxiosResponse } from "axios";
 import { useState } from "react";
 import { connect } from "react-redux";
-import { postApplications, putApplicationsUpdate } from "../../../api";
 import { IAppState } from "../../../containers/MainContainer/App.types";
-import { addApp, updateApp } from "../../../store/actions/actions";
-
+import {
+  addApplication,
+  updateApplication,
+} from "../../../store/actions/actions";
 import { Application } from "../../../store/reducers/appStore";
 import "./ApplicationForm.css";
 
 export const mapStateToProps = (state: IAppState) => {
   return {
-    appStore: state.appStore,
+    ...state,
   };
 };
 
-export const mapDispatchToProps = (
-  dispatch: (arg0: {
-    type: string;
-    appStore: { appStore: { applications: never[]; user: undefined } };
-  }) => void
-) => {
+export const mapDispatchToProps = (dispatch: any) => {
   return {
-    addApp: (app: Application) => {
-      dispatch(addApp(app));
+    addApplication: (app: Application) => {
+      dispatch(addApplication(app));
     },
-    updateApp: (app: Application) => {
-      dispatch(updateApp(app));
+    updateApplication: (app: Application) => {
+      dispatch(updateApplication(app));
     },
   };
 };
@@ -33,12 +28,12 @@ export const mapDispatchToProps = (
 type applicationFormProps = {
   activeApplication: Application;
   isEditable?: boolean;
-  handleOnComplete: ()=>void;
+  handleOnComplete: () => void;
 };
 
 export interface IAppProps {
-  updateApp: (app: Application) => void;
-  addApp: (app: Application) => void;
+  updateApplication: (app: Application) => void;
+  addApplication: (app: Application) => void;
 }
 
 export type ApplicationFormMergedProps = IAppState &
@@ -56,28 +51,12 @@ export const ApplicationForm = (props: ApplicationFormMergedProps) => {
     if (currentApplication) {
       setIsLoading(true);
       if (props.isEditable) {
-        await putApplicationsUpdate(currentApplication)
-          .then((resp: AxiosResponse) => {
-            // const data = resp.data;
-            props.updateApp(currentApplication);
-            setIsLoading(false);
-            props.handleOnComplete();
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
+        props.updateApplication(currentApplication);
       } else {
-        await postApplications(currentApplication)
-          .then((resp: AxiosResponse) => {
-            // const data = resp.data;
-            props.addApp(currentApplication);
-            setIsLoading(false);
-            props.handleOnComplete();
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
+        props.addApplication(currentApplication);
       }
+      setIsLoading(false);
+      props.handleOnComplete();
     }
   };
 

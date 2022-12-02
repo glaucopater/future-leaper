@@ -4,4 +4,5 @@ export type ListProps = {
   data: Application[];
   renderer: () => string[];
   handleDeleteApplication: (appId: string) => void;
+  handleOnClickAddButton: () => void;
 };

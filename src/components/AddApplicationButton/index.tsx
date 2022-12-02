@@ -7,7 +7,6 @@ export type AddApplicationsButtonProps = {
 
 export const AddApplicationButton = (cardProps: AddApplicationsButtonProps) => {
   const handleOnClick = () => {
-    console.log("handleOnClick");
     if (cardProps.onClickHandler) cardProps.onClickHandler();
   };
 

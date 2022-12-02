@@ -1,3 +1,3 @@
 import { combineReducers } from "redux";
-import appStore from "./appStore";
-export default combineReducers({ appStore });
+import appStoreReducer from "./appStore";
+export default combineReducers({ appStoreReducer });

@@ -1,13 +1,23 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
 import { useState } from "react";
-import { postRegisterUser } from "../../../api";
+import { connect } from "react-redux";
+import {
+  IAppProps,
+  IAppState,
+} from "../../../containers/MainContainer/App.types";
+import {
+  mapDispatchToProps,
+  mapStateToProps,
+} from "../../../containers/MainContainer/MainContainer";
 import { User } from "../../../store/reducers/appStore";
 import "./SignupForm.css";
 
-export const SignupForm = ({ formAction: registerUser }: any) => {
+export const SignupForm = ({
+  appStoreReducer,
+  registerUser,
+}: IAppProps & IAppState) => {
   const [, setIsLoading] = useState(false);
-  const [currentUsername, setCurrentUsername] = useState<User["username"]>();
-  const [currentPassword, setCurrentPassword] = useState<User["password"]>();
+  const [currentUsername, setCurrentUsername] = useState<User["username"]>("");
+  const [currentPassword, setCurrentPassword] = useState<User["password"]>("");
   const handleOnChangeUsername = (e: React.FormEvent<HTMLInputElement>) => {
     setCurrentUsername(e.currentTarget.value);
   };
@@ -20,30 +30,8 @@ export const SignupForm = ({ formAction: registerUser }: any) => {
     e.preventDefault();
     if (currentUsername || currentPassword) {
       setIsLoading(true);
-      registerUser();
-
-      await postRegisterUser({
-        username: currentUsername,
-        password: currentPassword,
-      })
-        .then((resp: AxiosResponse) => {
-          const data = resp.data;
-          if (data.status === "ok")
-            console.log("User " + currentUsername + " created!");
-          setIsLoading(false);
-        })
-        .catch((error: Error | AxiosError) => {
-          if (axios.isAxiosError(error)) {
-            const { error: errorMessage } =
-              error.response?.data || "Server error";
-            console.log(errorMessage.message);
-          } else {
-            console.log("Server error");
-          }
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
+      registerUser({ username: currentUsername, password: currentPassword });
+      setIsLoading(false);
     }
   };
 
@@ -72,3 +60,5 @@ export const SignupForm = ({ formAction: registerUser }: any) => {
     </>
   );
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);

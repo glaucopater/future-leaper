@@ -10,15 +10,17 @@ export const DeleteApplicationButton = (
   cardProps: DeleteApplicationsButtonProps
 ) => {
   const handleOnClick = (e: SyntheticEvent) => {
-    console.log("DeleteApplicationButton handleOnClick");
-
     if (cardProps.onClickHandler) {
       cardProps.onClickHandler(cardProps.id);
     }
   };
 
   return (
-    <button className="Delete_Application" onClick={handleOnClick}>
+    <button
+      className="Delete_Application"
+      onClick={handleOnClick}
+      title="Delete Application"
+    >
       Delete
     </button>
   );

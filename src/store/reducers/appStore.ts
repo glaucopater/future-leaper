@@ -1,11 +1,5 @@
-import {
-  ADD_APP,
-  DELETE_APP,
-  LIST_APP,
-  LOGIN_USER,
-  REGISTER_USER,
-  UPDATE_APP,
-} from "../actions/actionTypes";
+import { IAppState } from "../../containers/MainContainer/App.types";
+import { ReducerActionType } from "../actions/actionTypes";
 
 export type User = {
   username: string;
@@ -21,49 +15,55 @@ export type Application = {
   username: User["username"];
 };
 
-export const initialState = {
-  appStore: {
+export const initialState: IAppState = {
+  appStoreReducer: {
     applications: [],
-    user: undefined,
+    users: [],
+    isLoggedIn: false,
   },
 };
 
-const appStore = (
-  state = initialState.appStore,
-  action: { type: any; appStore: any }
+const appStoreReducer = (
+  state = initialState,
+  action: { type: any; payload: any }
 ) => {
-  let appStore;
-  console.log("reducer", action.type);
   switch (action.type) {
-    case ADD_APP:
-      appStore = Object.assign({}, state, action.appStore);
-      break;
-    case LIST_APP:
-      appStore = Object.assign({}, state, action.appStore);
-      break;
-    case UPDATE_APP:
-      appStore = Object.assign({}, state, action.appStore);
-      break;
-    case DELETE_APP:
-      appStore = Object.assign({}, state, action.appStore);
-      break;
-    case LOGIN_USER:
-      // [POST] https://frontend-test.getsandbox.com/users/login
-      // OK should redirect to main page
-      // error should show a notification
-
-      appStore = Object.assign({}, state, action.appStore);
-      break;
-    case REGISTER_USER:
+    case ReducerActionType.ADD_APP:
+      return Object.assign({}, state, action.payload);
+    case ReducerActionType.ADD_APP_SUCCESS:
+      return Object.assign({}, state, action.payload);
+    case ReducerActionType.ADD_APP_FAILURE:
+      return Object.assign({}, state, action.payload);
+    case ReducerActionType.LIST_APP:
+      return Object.assign({}, state, action.payload);
+    case ReducerActionType.LIST_APP_SUCCESS:
+      return { ...state, applications: action.payload };
+    case ReducerActionType.UPDATE_APP:
+      return Object.assign({}, state, action.payload);
+    case ReducerActionType.UPDATE_APP_SUCCESS:
+      return Object.assign({}, state);
+    case ReducerActionType.UPDATE_APP_FAILURE:
+      return Object.assign({}, state);
+    case ReducerActionType.DELETE_APP:
+      return Object.assign({}, state, action.payload);
+    case ReducerActionType.DELETE_APP_SUCCESS:
+      return Object.assign({}, state, action.payload);
+    case ReducerActionType.DELETE_APP_FAILURE:
+      return Object.assign({}, state, action.payload);
+    case ReducerActionType.LOGIN_USER:
+      return Object.assign({}, state);
+    case ReducerActionType.LOGIN_SUCCESS:
+      return { ...state, userSession: action.payload };
+    case ReducerActionType.LOGIN_FAILURE:
+      return Object.assign({}, state, action.payload);
+    case ReducerActionType.REGISTER_USER:
       // [POST] https://frontend-test.getsandbox.com/users
       // OK should show a notification
       // error should show a notification
-      appStore = Object.assign({}, state, action.appStore);
-      break;
+      return Object.assign({}, state, action.payload);
     default:
-      appStore = state;
+      return state;
   }
-  return appStore;
 };
 
-export default appStore;
+export default appStoreReducer;

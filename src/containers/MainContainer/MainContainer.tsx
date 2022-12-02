@@ -1,79 +1,61 @@
 import {
-  deleteApp,
-  updateApp,
-  addApp,
-  registerUser,
+  addApplication,
+  deleteApplication,
+  getApplications,
   loginUser,
-  listApp,
+  registerUser,
+  updateApplication,
 } from "../../store/actions/actions";
 import { IAppProps, IAppState } from "./App.types";
 import { connect } from "react-redux";
 import React from "react";
-import { getApplications } from "../../api";
 import { useCookies } from "react-cookie";
 import { Header } from "../../components/Header";
-import { AxiosResponse } from "axios";
 import { Application, User } from "../../store/reducers/appStore";
 import { List as ApplicationList } from "../../components/List";
-import { AddApplicationButton } from "../../components/AddApplicationButton";
 import { Modal as AddModal } from "../../components/Modal";
 import "./App.css";
 
 export const mapStateToProps = (state: IAppState) => {
-  return {
-    appStore: state.appStore,
-  };
+  return { ...state };
 };
 
-export const mapDispatchToProps = (
-  dispatch: (arg0: {
-    type: string;
-    appStore: { appStore: { applications: never[]; user: undefined } };
-  }) => void
-) => {
+export const mapDispatchToProps = (dispatch: any) => {
   return {
-    deleteApp: (appId: Application["id"]) => {
-      dispatch(deleteApp(appId));
-    },
-    addApp: (app: Application) => {
-      dispatch(addApp(app));
-    },
-    updateApp: (app: Application) => {
-      dispatch(updateApp(app));
-    },
-    listApp: () => {
-      dispatch(listApp());
-    },
     registerUser: (user: User) => {
       dispatch(registerUser(user));
+    },
+    deleteApplication: (appId: Application["id"]) => {
+      dispatch(deleteApplication(appId));
+    },
+    addApplication: (app: Application) => {
+      dispatch(addApplication(app));
+    },
+    updateApplication: (app: Application) => {
+      dispatch(updateApplication(app));
     },
     loginUser: (user: User) => {
       dispatch(loginUser(user));
     },
+    getApplications: () => {
+      dispatch(getApplications());
+    },
   };
 };
 
-const MainContainer = (props: IAppProps & IAppState) => {
-  const [state, setState] = React.useState<IAppState>(props);
+const MainContainer = ({
+  getApplications,
+  deleteApplication,
+  appStoreReducer,
+}: IAppProps & IAppState) => {
   const [displayModal, setDisplayModal] = React.useState(false);
   const [cookies] = useCookies(["sessionId"]);
 
-  const { listApp, deleteApp } = props;
-
   React.useEffect(() => {
-    if (cookies["sessionId"] && state.appStore.applications.length === 0) {
-      listApp();
-      getApplications().then((resp: AxiosResponse) => {
-        console.log("Applications", resp.data);
-        setState({
-          appStore: {
-            users: [],
-            applications: resp.data,
-          },
-        });
-      });
+    if (cookies["sessionId"]) {
+      getApplications();
     }
-  }, [state.appStore.applications.length, cookies, listApp]);
+  }, [cookies, getApplications]);
 
   const renderer = () => [
     "id",
@@ -93,21 +75,21 @@ const MainContainer = (props: IAppProps & IAppState) => {
   };
 
   const handleDeleteApplication = (appId: string) => {
-    deleteApp(appId);
+    deleteApplication(appId);
   };
 
   return (
     <div className="App">
       <Header />
       <main className="App-main">
-        <AddApplicationButton onClickHandler={handleOnClickAddButton} />
         <ApplicationList
-          data={state.appStore.applications}
+          data={appStoreReducer.applications}
           renderer={renderer}
           handleDeleteApplication={handleDeleteApplication}
+          handleOnClickAddButton={handleOnClickAddButton}
         />
         <AddModal
-          content={{
+          application={{
             id: "",
             name: "",
             secret: "",

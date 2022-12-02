@@ -3,12 +3,12 @@ import ApplicationForm from "../Forms/ApplicationForm";
 import "./Modal.css";
 
 export const Modal = ({
-  content: application,
+  application,
   state,
   closeModal,
   isEditable,
 }: {
-  content: Application;
+  application: Application;
   state: boolean;
   closeModal: () => void;
   isEditable?: boolean;
