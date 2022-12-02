@@ -18,9 +18,9 @@
   flex-direction: column;
   align-items: center;
   background-color: white;
-  width: 350px;  
-  height: 50%;  
-  margin: auto;  
+  width: 350px;
+  height: 50%;
+  margin: auto;
   padding: 10px;
   border: 1px solid black;
   border-radius: 20px; /* Optional. Rounds container corners */

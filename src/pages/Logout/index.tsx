@@ -13,4 +13,3 @@ export const Logout = () => {
   if (!cookie["sessionId"]) return <Navigate to="/" replace={true} />;
   else return <>Logging out</>;
 };
-

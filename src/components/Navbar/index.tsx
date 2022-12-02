@@ -5,7 +5,7 @@ import "./Navbar.css";
 export const Navbar = () => {
   const [cookies] = useCookies(["sessionId"]);
 
-   return (
+  return (
     <nav>
       <ul className="Navbar">
         <li>
