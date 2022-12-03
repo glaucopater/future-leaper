@@ -4,11 +4,8 @@ import { connect } from "react-redux";
 import { Navigate, useParams } from "react-router-dom";
 import ApplicationForm from "../../components/Forms/ApplicationForm";
 import { Header } from "../../components/Header";
-import { IAppProps, IAppState } from "../../containers/MainContainer/App.types";
-import {
-  mapDispatchToProps,
-  mapStateToProps,
-} from "../../containers/MainContainer/MainContainer";
+import { IAppProps, IAppState } from "../../containers/Main/Main.types";
+import { mapDispatchToProps, mapStateToProps } from "../../containers/Main";
 
 export const ApplicationDetails = ({
   appStoreReducer,

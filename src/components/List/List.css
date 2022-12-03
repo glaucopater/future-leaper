@@ -5,8 +5,16 @@
   align-items: center;
 }
 
-.Info {
+.List_Header {
+  display: flex;
+  align-content: center;
+  align-items: baseline;
+  margin: 8px;
+}
+
+.List_Title {
   color: #111;
+  margin: 0 8px;
 }
 
 .List li {

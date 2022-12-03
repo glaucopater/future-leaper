@@ -5,3 +5,38 @@
   padding: 8px;
   margin: 8px;
 }
+
+.ApplicationForm-Form label {
+  font-weight: 700;
+  align-self: flex-start;
+}
+
+.ApplicationForm-Form > input {
+  margin-bottom: 8px;
+}
+
+.Update_Application {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #111;
+  display: block;
+  flex: 1 0 auto;
+  margin: 4px 0;
+  padding: 4px 8px;
+  position: relative;
+  text-decoration: none;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: ease-in-out 300ms;
+}
+
+.Update_Application:hover {
+  cursor: pointer;
+  transition: ease-in-out 300ms;
+  background: #effeec;
+}
+
+.Update_Application::after {
+  content: "💾";
+  padding: 0 8px;
+}

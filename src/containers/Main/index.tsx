@@ -7,7 +7,7 @@ import {
   registerUser,
   updateApplication,
 } from "../../store/actions/actions";
-import { IAppProps, IAppState } from "./App.types";
+import { IAppProps, IAppState } from "./Main.types";
 import { connect } from "react-redux";
 import React from "react";
 import { useCookies } from "react-cookie";
@@ -15,7 +15,7 @@ import { Header } from "../../components/Header";
 import { Application, User } from "../../store/reducers/appStore";
 import { List as ApplicationList } from "../../components/List";
 import { Modal as AddModal } from "../../components/Modal";
-import "./App.css";
+import "./Main.css";
 
 export const mapStateToProps = (state: IAppState) => {
   return { ...state };

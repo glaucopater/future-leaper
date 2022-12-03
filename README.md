@@ -2,6 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## [Demo] ⚡
+
+![Login](/demo/future_leap_login.jpg)
+![Home](/demo/future_leap_home.jpg)
+![Add Application](/demo/future_leap_add.jpg)
+![Scroll Page](/demo/future_leap_scroll.jpg)
+![Application Details](/demo/future_leap_details.jpg)
+
 # State manager 🏬
 
 I adopted as by requirement Redux and Thunk, even in this case React custom reducer hooks and a context would have been more than enough.
@@ -17,8 +25,6 @@ Using a cookie nowadays is a bit strange to me, I would have opted for a standar
 # UI 🎨
 
 The UI is minimalistic, due to missing time I could not switch to SASS.
-
-# Models 📐
 
 # Tests 🧪
 

@@ -57,7 +57,6 @@ export const getApplications = () => {
 };
 
 export const getApplicationDetailsSuccess = (data: Application) => {
-  console.log(data);
   return {
     type: ReducerActionType.GET_APP_SUCCESS,
     payload: data,

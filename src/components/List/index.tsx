@@ -12,13 +12,15 @@ export const List = ({
 }: React.PropsWithChildren<ListProps>) => {
   return (
     <>
-      <h3 className="Info">Applications List</h3>
-      <AddApplicationButton onClickHandler={handleOnClickAddButton} />
+      <header className="List_Header">
+        <h3 className="List_Title">Available Applications</h3>
+        <AddApplicationButton onClickHandler={handleOnClickAddButton} />
+      </header>
       <ul className="List">
         {data?.map((app, index: number) => {
           return (
             <li key={index} className={""}>
-              <ApplicationCard item={app} renderer={renderer} />
+              <ApplicationCard item={app} />
               <DeleteApplicationButton
                 id={app.id}
                 onClickHandler={handleDeleteApplication}
