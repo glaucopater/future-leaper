@@ -17,7 +17,8 @@ I adopted as by requirement Redux and Thunk, even in this case React custom redu
 # API
 
 Axios is used for the basic CRUD operation. Please note that the info about some API in the readme are not correct, i.e. for the /users endpoint the shape of the user model has only username and password.
-
+As the provided API is not working anymore I created a mock server 
+https://futureleap.free.beeceptor.com
 # Security
 
 Using a cookie nowadays is a bit strange to me, I would have opted for a standard JWT or also a http-only cookie.
