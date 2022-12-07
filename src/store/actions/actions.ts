@@ -23,7 +23,6 @@ export const loginUser = (user: User) => {
     return axios
       .post<User>(backendAPI + "users/login", user)
       .then(({ data }: AxiosResponse) => {
-        console.log(data);
         dispatch(loginSuccess(data));
       })
       .catch((error) => {
