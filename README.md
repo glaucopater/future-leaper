@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## [Demo] ⚡
+## Demo ⚡
 
 ![Login](/demo/future_leap_login.jpg)
 ![Home](/demo/future_leap_home.jpg)
