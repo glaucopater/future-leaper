@@ -1,6 +1,6 @@
 import { Header } from "../../components/Header";
 import SignupForm from "../../components/Forms/SignupForm";
-import "../../containers/MainContainer/App.css";
+import "../../containers/Main/Main.css";
 
 export const Signup = () => {
   return (

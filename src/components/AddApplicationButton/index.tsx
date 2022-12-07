@@ -11,8 +11,12 @@ export const AddApplicationButton = (cardProps: AddApplicationsButtonProps) => {
   };
 
   return (
-    <button className="Add_Application" onClick={handleOnClick}>
-      Add App
+    <button
+      className="Add_Application"
+      title="Add New Application"
+      onClick={handleOnClick}
+    >
+      Add
     </button>
   );
 };

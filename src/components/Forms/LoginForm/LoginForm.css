@@ -8,6 +8,7 @@
 }
 
 .Login-Form label {
+  font-weight: 700;
   align-self: flex-start;
 }
 

@@ -1,4 +1,4 @@
-import { IAppState } from "../../containers/MainContainer/App.types";
+import { IAppState } from "../../containers/Main/Main.types";
 import { ReducerActionType } from "../actions/actionTypes";
 
 export type User = {
@@ -24,7 +24,7 @@ export const initialState: IAppState = {
 
 const appStoreReducer = (
   state = initialState,
-  action: { type: any; payload: any }
+  action: { type: ReducerActionType; payload: string | object }
 ) => {
   switch (action.type) {
     case ReducerActionType.ADD_APP:
@@ -42,7 +42,7 @@ const appStoreReducer = (
     case ReducerActionType.GET_APP_FAILURE:
       return Object.assign({}, state, action.payload);
     case ReducerActionType.GET_APP_SUCCESS:
-      return { ...state, application: action.payload };
+      return { ...state, activeApplication: action.payload };
     case ReducerActionType.UPDATE_APP:
       return Object.assign({}, state, action.payload);
     case ReducerActionType.UPDATE_APP_SUCCESS:

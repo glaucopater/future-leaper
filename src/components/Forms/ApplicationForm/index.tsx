@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { IAppState } from "../../../containers/MainContainer/App.types";
+import { IAppState } from "../../../containers/Main/Main.types";
 import {
   addApplication,
   updateApplication,
@@ -103,7 +103,7 @@ export const ApplicationForm = (props: ApplicationFormMergedProps) => {
   };
 
   return (
-    <form className="ApplicationForm-Form">
+    <form className="ApplicationForm-Form" autoComplete="off">
       <label>Id</label>
       <input
         type="text"
@@ -155,6 +155,7 @@ export const ApplicationForm = (props: ApplicationFormMergedProps) => {
         onChange={handleOnChangeLanguage}
       ></input>
       <button
+        className="Update_Application"
         disabled={!currentApplication.name && !currentApplication.version}
         onClick={handleOnUpdate}
       >

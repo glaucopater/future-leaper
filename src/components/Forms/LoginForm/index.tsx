@@ -2,14 +2,8 @@ import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
-import {
-  IAppProps,
-  IAppState,
-} from "../../../containers/MainContainer/App.types";
-import {
-  mapDispatchToProps,
-  mapStateToProps,
-} from "../../../containers/MainContainer/MainContainer";
+import { IAppProps, IAppState } from "../../../containers/Main/Main.types";
+import { mapDispatchToProps, mapStateToProps } from "../../../containers/Main";
 import { User } from "../../../store/reducers/appStore";
 import "./LoginForm.css";
 
@@ -54,7 +48,6 @@ export const LoginForm = ({
 
   return (
     <>
-      <h3>Login</h3>
       <form className="Login-Form">
         <label>Username</label>
         <input

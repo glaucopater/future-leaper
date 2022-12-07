@@ -1,10 +1,10 @@
 import { useCookies } from "react-cookie";
 import { Navigate } from "react-router-dom";
-import MainContainer from "../../containers/MainContainer/MainContainer";
-import "../../containers/MainContainer/App.css";
+import Main from "../../containers/Main";
+import "../../containers/Main/Main.css";
 
 export const Home = () => {
   const [cookies] = useCookies(["sessionId"]);
-  if (cookies["sessionId"]) return <MainContainer />;
+  if (cookies["sessionId"]) return <Main />;
   else return <Navigate to="/login" replace={true} />;
 };

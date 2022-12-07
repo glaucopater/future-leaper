@@ -4,7 +4,7 @@
   color: #111;
   display: block;
   flex: 1 0 auto;
-  margin: 4px;
+  margin: 4px 0;
   padding: 4px 8px;
   position: relative;
   text-decoration: none;
@@ -16,7 +16,7 @@
 .Delete_Application:hover {
   cursor: pointer;
   transition: ease-in-out 300ms;
-  background: #effeec;
+  background: #ffb6b6;
 }
 
 .Delete_Application::after {

@@ -1,0 +1,22 @@
+.Breadcrumbs {
+  background-color: #303234;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  align-content: center;
+  justify-content: center;
+}
+
+.PathToken {
+  padding: 8px 4px;
+  text-transform: capitalize;
+}
+
+.Breadcrumbs .PathToken:not(:last-child):after {
+  content: " /";
+}
+
+.Breadcrumbs .PathToken:last-child {
+  text-decoration: underline;
+}

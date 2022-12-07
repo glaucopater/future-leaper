@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import {
-  IAppProps,
-  IAppState,
-} from "../../../containers/MainContainer/App.types";
-import {
-  mapDispatchToProps,
-  mapStateToProps,
-} from "../../../containers/MainContainer/MainContainer";
+import { IAppProps, IAppState } from "../../../containers/Main/Main.types";
+import { mapDispatchToProps, mapStateToProps } from "../../../containers/Main";
 import { User } from "../../../store/reducers/appStore";
 import "./SignupForm.css";
 
@@ -37,7 +31,6 @@ export const SignupForm = ({
 
   return (
     <>
-      <h3>Signup</h3>
       <form className="Signup-Form">
         <label>Username</label>
         <input

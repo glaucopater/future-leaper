@@ -1,4 +1,4 @@
-.application-card {
+.Application-Card {
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 8px;
@@ -7,15 +7,16 @@
   align-items: flex-start;
 }
 
-.application-card:hover {
+.Application-Card:hover {
   background-color: lightblue;
   cursor: pointer;
 }
 
-.application-card-selected {
+.Application-Card-selected {
   background-color: lightgreen;
 }
 
-strong {
+label {
   text-transform: capitalize;
+  font-weight: 700;
 }
