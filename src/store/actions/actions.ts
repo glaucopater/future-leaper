@@ -1,8 +1,9 @@
 import axios, { AxiosResponse } from "axios";
+import { Dispatch } from "redux";
 import { Application, User } from "../reducers/appStore";
 import { ReducerActionType } from "./actionTypes";
 
-const backendAPI = process.env.REACT_APP_BACKEND_API;
+const backendAPI = "";
 
 export const loginSuccess = (data: User) => {
   return {
@@ -19,7 +20,12 @@ export const loginFailure = (message: string) => {
 };
 
 export const loginUser = (user: User) => {
-  return (dispatch: any) => {
+  return (
+    dispatch: (arg0: {
+      type: ReducerActionType;
+      payload: string | User;
+    }) => void
+  ) => {
     return axios
       .post<User>(backendAPI + "users/login", user)
       .then(({ data }: AxiosResponse) => {
@@ -46,9 +52,14 @@ export const getApplicationsFailure = (message: string) => {
 };
 
 export const getApplications = () => {
-  return (dispatch: any) => {
+  return (
+    dispatch: Dispatch<{
+      type: ReducerActionType;
+      payload: Application[] | string;
+    }>
+  ) => {
     return axios
-      .get<Application[]>(backendAPI + "applications")
+      .get<Application[]>(backendAPI + "/applications", )
       .then(({ data }: AxiosResponse) => {
         dispatch(getApplicationsSuccess(data));
       })
@@ -73,7 +84,12 @@ export const getApplicationDetailsFailure = (message: string) => {
 };
 
 export const getApplicationDetails = (applicationId: Application["id"]) => {
-  return (dispatch: any) => {
+  return (
+    dispatch: (arg0: {
+      type: ReducerActionType;
+      payload: string | Application;
+    }) => void
+  ) => {
     return axios
       .get<Application>(backendAPI + "/applications/" + applicationId)
       .then(({ data }: AxiosResponse) => {

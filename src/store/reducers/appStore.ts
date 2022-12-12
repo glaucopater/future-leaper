@@ -28,11 +28,9 @@ const appStoreReducer = (
 ) => {
   switch (action.type) {
     case ReducerActionType.ADD_APP:
-      return Object.assign({}, state, action.payload);
     case ReducerActionType.ADD_APP_SUCCESS:
-      return Object.assign({}, state, action.payload);
     case ReducerActionType.ADD_APP_FAILURE:
-      return Object.assign({}, state, action.payload);
+      return Object.assign({}, state);
     case ReducerActionType.LIST_APP:
       return Object.assign({}, state, action.payload);
     case ReducerActionType.LIST_APP_SUCCESS:
@@ -46,7 +44,7 @@ const appStoreReducer = (
     case ReducerActionType.UPDATE_APP:
       return Object.assign({}, state, action.payload);
     case ReducerActionType.UPDATE_APP_SUCCESS:
-      return Object.assign({}, state);
+      return { ...state, activeApplication: action.payload };
     case ReducerActionType.UPDATE_APP_FAILURE:
       return Object.assign({}, state);
     case ReducerActionType.DELETE_APP:
@@ -60,7 +58,6 @@ const appStoreReducer = (
     case ReducerActionType.LOGIN_SUCCESS:
       return { ...state, userSession: action.payload };
     case ReducerActionType.LOGIN_FAILURE:
-      return Object.assign({}, state, action.payload);
     case ReducerActionType.REGISTER_USER:
       return Object.assign({}, state, action.payload);
     default:

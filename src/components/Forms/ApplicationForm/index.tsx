@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { IAppState } from "../../../containers/Main/Main.types";
 import {
@@ -40,23 +40,41 @@ export type ApplicationFormMergedProps = IAppState &
   IAppProps &
   applicationFormProps;
 
-export const ApplicationForm = (props: ApplicationFormMergedProps) => {
+export const ApplicationForm = ({
+  isEditable,
+  activeApplication,
+  handleOnComplete,
+  addApplication,
+  updateApplication,
+  appStoreReducer,
+}: ApplicationFormMergedProps) => {
   const [, setIsLoading] = useState(false);
-  const [currentApplication, setCurrentApplication] = useState<Application>(
-    props.activeApplication
-  );
+  const [currentApplication, setCurrentApplication] =
+    useState<Application>(activeApplication);
+
+  useEffect(() => {
+    if (
+      appStoreReducer.activeApplication &&
+      currentApplication?.id !== activeApplication.id
+    )
+      setCurrentApplication(appStoreReducer.activeApplication);
+  }, [
+    activeApplication,
+    currentApplication,
+    appStoreReducer.activeApplication,
+  ]);
 
   const handleOnUpdate = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (currentApplication) {
       setIsLoading(true);
-      if (props.isEditable) {
-        props.updateApplication(currentApplication);
+      if (isEditable) {
+        updateApplication(currentApplication);
       } else {
-        props.addApplication(currentApplication);
+        addApplication(currentApplication);
       }
       setIsLoading(false);
-      if (props.handleOnComplete) props.handleOnComplete();
+      if (handleOnComplete) handleOnComplete();
     }
   };
 
@@ -102,23 +120,29 @@ export const ApplicationForm = (props: ApplicationFormMergedProps) => {
     });
   };
 
+  if (
+    !activeApplication &&
+    !appStoreReducer.activeApplication &&
+    !currentApplication
+  ) {
+    return <>Loading</>;
+  }
+
   return (
     <form className="ApplicationForm-Form" autoComplete="off">
       <label>Id</label>
       <input
         type="text"
         placeholder="id"
-        autoComplete="id"
-        defaultValue={currentApplication.id}
+        value={currentApplication.id}
         onChange={handleOnChangeId}
-        readOnly={props.isEditable}
       ></input>
       <label>Name</label>
       <input
         type="text"
         placeholder="name"
         autoComplete="name"
-        defaultValue={currentApplication.name}
+        value={currentApplication.name}
         onChange={handleOnChangeName}
       ></input>
       <label>Version</label>
@@ -126,7 +150,7 @@ export const ApplicationForm = (props: ApplicationFormMergedProps) => {
         type="text"
         placeholder="version"
         autoComplete="current-version"
-        defaultValue={currentApplication.version}
+        value={currentApplication.version}
         onChange={handleOnChangeVersion}
       ></input>
       <label>Secret</label>
@@ -134,7 +158,7 @@ export const ApplicationForm = (props: ApplicationFormMergedProps) => {
         type="password"
         placeholder="secret"
         autoComplete="current-secret"
-        defaultValue={currentApplication.secret}
+        value={currentApplication.secret}
         onChange={handleOnChangeSecret}
       ></input>
       <label>Username</label>
@@ -142,16 +166,16 @@ export const ApplicationForm = (props: ApplicationFormMergedProps) => {
         type="text"
         placeholder="username"
         autoComplete="username"
-        defaultValue={currentApplication.username}
+        value={currentApplication.username}
         onChange={handleOnChangeUserName}
-        readOnly={props.isEditable}
+        readOnly={isEditable}
       ></input>
       <label>Language</label>
       <input
         type="text"
         placeholder="language"
         autoComplete="language"
-        defaultValue={currentApplication.lang}
+        value={currentApplication.lang}
         onChange={handleOnChangeLanguage}
       ></input>
       <button
@@ -159,7 +183,7 @@ export const ApplicationForm = (props: ApplicationFormMergedProps) => {
         disabled={!currentApplication.name && !currentApplication.version}
         onClick={handleOnUpdate}
       >
-        {props.isEditable ? "Update" : "Add"}
+        {isEditable ? "Update" : "Add"}
       </button>
     </form>
   );
