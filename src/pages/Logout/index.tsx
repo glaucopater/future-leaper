@@ -13,7 +13,7 @@ export const Logout = () => {
       //force refresh to avoid cookie cache
       window.location.reload();
     }
-  }, [cookie,removeCookie]);
+  }, [cookie, removeCookie]);
 
   return (
     <div className="App">

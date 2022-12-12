@@ -18,9 +18,7 @@ export const ApplicationDetails = ({
     if (id) getApplicationDetails(id);
   }, [id, getApplicationDetails]);
 
-
-  if (!cookies["sessionId"]) 
-  return <Navigate to="/login" replace={true} />;
+  if (!cookies["sessionId"]) return <Navigate to="/login" replace={true} />;
   else
     return (
       <>

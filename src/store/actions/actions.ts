@@ -59,7 +59,7 @@ export const getApplications = () => {
     }>
   ) => {
     return axios
-      .get<Application[]>(backendAPI + "/applications", )
+      .get<Application[]>(backendAPI + "/applications")
       .then(({ data }: AxiosResponse) => {
         dispatch(getApplicationsSuccess(data));
       })
