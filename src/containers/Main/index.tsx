@@ -86,24 +86,31 @@ const MainContainer = ({
     <div className="App">
       <Header />
       <main className="App-main">
-        <ApplicationList
-          data={appStoreReducer.applications}
-          renderer={renderer}
-          handleDeleteApplication={handleDeleteApplication}
-          handleOnClickAddButton={handleOnClickAddButton}
-        />
-        <AddModal
-          application={{
-            id: "",
-            name: "",
-            secret: "",
-            lang: "",
-            version: 0,
-            username: "",
-          }}
-          state={displayModal}
-          closeModal={handleOnCloseModal}
-        />
+        {!appStoreReducer?.applications?.length && "Loading"}
+        {appStoreReducer?.applications?.length && (
+          <>
+            <ApplicationList
+              data={appStoreReducer.applications}
+              renderer={renderer}
+              handleDeleteApplication={handleDeleteApplication}
+              handleOnClickAddButton={handleOnClickAddButton}
+            />
+            <AddModal
+              application={{
+                id: String(appStoreReducer?.applications?.length + 1),
+                name:
+                  "Test App " +
+                  String(appStoreReducer?.applications?.length + 1),
+                secret: "",
+                lang: "",
+                version: 1,
+                username: "",
+              }}
+              state={displayModal}
+              closeModal={handleOnCloseModal}
+            />
+          </>
+        )}
       </main>
     </div>
   );

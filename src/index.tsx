@@ -23,7 +23,6 @@ root.render(
         <RouterProvider router={router} />
       </CookiesProvider>
     </Provider>
-    ,
   </React.StrictMode>
 );
 

@@ -1,6 +1,9 @@
 import axios, { AxiosResponse } from "axios";
+import { Dispatch } from "redux";
 import { Application, User } from "../reducers/appStore";
 import { ReducerActionType } from "./actionTypes";
+
+const backendAPI = "";
 
 export const loginSuccess = (data: User) => {
   return {
@@ -17,9 +20,14 @@ export const loginFailure = (message: string) => {
 };
 
 export const loginUser = (user: User) => {
-  return (dispatch: any) => {
+  return (
+    dispatch: (arg0: {
+      type: ReducerActionType;
+      payload: string | User;
+    }) => void
+  ) => {
     return axios
-      .post<User>("users/login", user)
+      .post<User>(backendAPI + "users/login", user)
       .then(({ data }: AxiosResponse) => {
         dispatch(loginSuccess(data));
       })
@@ -44,9 +52,14 @@ export const getApplicationsFailure = (message: string) => {
 };
 
 export const getApplications = () => {
-  return (dispatch: any) => {
+  return (
+    dispatch: Dispatch<{
+      type: ReducerActionType;
+      payload: Application[] | string;
+    }>
+  ) => {
     return axios
-      .get<Application[]>("applications")
+      .get<Application[]>(backendAPI + "/applications")
       .then(({ data }: AxiosResponse) => {
         dispatch(getApplicationsSuccess(data));
       })
@@ -71,9 +84,14 @@ export const getApplicationDetailsFailure = (message: string) => {
 };
 
 export const getApplicationDetails = (applicationId: Application["id"]) => {
-  return (dispatch: any) => {
+  return (
+    dispatch: (arg0: {
+      type: ReducerActionType;
+      payload: string | Application;
+    }) => void
+  ) => {
     return axios
-      .get<Application>("/applications/" + applicationId)
+      .get<Application>(backendAPI + "/applications/" + applicationId)
       .then(({ data }: AxiosResponse) => {
         dispatch(getApplicationDetailsSuccess(data));
       })
@@ -100,7 +118,7 @@ export const updateApplicationsFailure = (message: string) => {
 export const updateApplication = (application: Application) => {
   return (dispatch: any) => {
     return axios
-      .put("/applications/" + application.id, application)
+      .put(backendAPI + "/applications/" + application.id, application)
       .then(({ data }: AxiosResponse) => {
         dispatch(updateApplicationsSuccess(data));
         dispatch(getApplications());
@@ -128,7 +146,7 @@ export const addApplicationsFailure = (message: string) => {
 export const addApplication = (application: Application) => {
   return (dispatch: any) => {
     return axios
-      .post("/applications", application)
+      .post(backendAPI + "/applications", application)
       .then((resp: AxiosResponse) => {
         dispatch(addApplicationsSuccess(resp.data));
         dispatch(getApplications());
@@ -156,7 +174,7 @@ export const deleteApplicationFailure = (message: string) => {
 export const deleteApplication = (applicationId: Application["id"]) => {
   return (dispatch: any) => {
     return axios
-      .delete("/applications/" + applicationId)
+      .delete(backendAPI + "/applications/" + applicationId)
       .then(({ data }: AxiosResponse) => {
         dispatch(deleteApplicationSuccess(data));
         dispatch(getApplications());
@@ -184,7 +202,7 @@ export const registerUserFailure = (message: string) => {
 export const registerUser = (user: User) => {
   return (dispatch: any) => {
     return axios
-      .post("/users", user)
+      .post(backendAPI + "/users", user)
       .then(({ data }: AxiosResponse) => {
         dispatch(registerUserSuccess(data));
       })

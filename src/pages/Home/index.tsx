@@ -6,5 +6,5 @@ import "../../containers/Main/Main.css";
 export const Home = () => {
   const [cookies] = useCookies(["sessionId"]);
   if (cookies["sessionId"]) return <Main />;
-  else return <Navigate to="/login" replace={true} />;
+  else return <Navigate to="/login" replace />;
 };
